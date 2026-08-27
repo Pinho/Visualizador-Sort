@@ -89,6 +89,7 @@ botaoOrdenar.addEventListener("click", async function() {
     for (let i =0; i < listaNumeros.length; i++) {
         for (let j =0; j < listaNumeros.length - i - 1; j++) {
 
+            tocarSom(listaNumeros[j]);
             await sleep(parseInt(sliderVelocidade.value)); 
             if (listaNumeros[j] > listaNumeros[j+1]){
                 let temp = listaNumeros[j];
@@ -101,12 +102,14 @@ botaoOrdenar.addEventListener("click", async function() {
     }
 
     for (let w = 0; w < listaNumeros.length; w++) {
-        
+
+    tocarSom(listaNumeros[w]);
     desenharTela(listaNumeros, -1, -1, w);
     await sleep(30); 
     }
 
     desenharTela(listaNumeros);
+    ordenando = false;
 }
 
     
