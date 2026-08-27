@@ -133,6 +133,36 @@ botaoOrdenar.addEventListener("click", async function() {
         }
     }
 
+    if (algoritmoEscolhido === "insertion") {
+        
+        for (let i = 1; i < listaNumeros.length; i++) {
+            
+            let chave = listaNumeros[i];
+            
+            let j = i - 1;
+
+            while (j >= 0 && listaNumeros[j] > chave) {
+                
+                // Visual e som do algoritmo "analisando" a carta
+                tocarSom(listaNumeros[j]);
+                desenharTela(listaNumeros, j, j + 1, -1);
+                await sleep(parseInt(sliderVelocidade.value));
+
+                if(listaNumeros[j] > chave) {
+                    let temp = listaNumeros[j];
+                    listaNumeros[j] = listaNumeros[j + 1];
+                    listaNumeros[j + 1] = temp;
+                    j--;
+                }
+                
+            }
+            listaNumeros[j + 1] = chave;
+            
+        }
+    }
+
+
+
     for (let w = 0; w < listaNumeros.length; w++) {
 
     tocarSom(listaNumeros[w]);
