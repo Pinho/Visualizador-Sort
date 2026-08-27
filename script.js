@@ -3,6 +3,7 @@ const pincel = tela.getContext("2d");
 const botaoGerar = document.getElementById("btn-gerar");
 const sliderQuantidade = document.getElementById("slider-quantidade");
 const sliderVelocidade = document.getElementById("slider-velocidade");
+const seletorAlgoritmo = document.getElementById("seletor-algoritmo");
 
 
 function desenharTela(array, indice1 = -1, indice2 = -1, indiceVerde = -1) {
@@ -85,18 +86,49 @@ const botaoOrdenar = document.getElementById("btn-ordenar");
 botaoOrdenar.addEventListener("click", async function() {
     if (ordenando) return;
     ordenando = true;
-    
-    for (let i =0; i < listaNumeros.length; i++) {
-        for (let j =0; j < listaNumeros.length - i - 1; j++) {
+    const algoritmoEscolhido = seletorAlgoritmo.value;
+    if (algoritmoEscolhido === "bubble") {
+        for (let i =0; i < listaNumeros.length; i++) {
+            for (let j =0; j < listaNumeros.length - i - 1; j++) {
 
-            tocarSom(listaNumeros[j]);
-            await sleep(parseInt(sliderVelocidade.value)); 
-            if (listaNumeros[j] > listaNumeros[j+1]){
-                let temp = listaNumeros[j];
-                listaNumeros[j] = listaNumeros[j+1];
-                listaNumeros[j+1] = temp;
+                tocarSom(listaNumeros[j]);
+                await sleep(parseInt(sliderVelocidade.value)); 
+                if (listaNumeros[j] > listaNumeros[j+1]){
+                    let temp = listaNumeros[j];
+                    listaNumeros[j] = listaNumeros[j+1];
+                    listaNumeros[j+1] = temp;
 
-                desenharTela(listaNumeros, j, j+1, -1);
+                    desenharTela(listaNumeros, j, j+1, -1);
+                }
+            }
+        }
+    }
+
+    if (algoritmoEscolhido === "selection") {
+        for (let i = 0; i < listaNumeros.length; i++) {
+            
+            let menorIndice = i; 
+            
+            // Varremos o resto do array (i + 1) para a direita
+            for (let j = i + 1; j < listaNumeros.length; j++) {
+                
+                // Toca som e freia para podermos ver a varredura
+                tocarSom(listaNumeros[j]);
+                await sleep(parseInt(sliderVelocidade.value)); 
+                
+                desenharTela(listaNumeros, menorIndice, j, -1);
+                
+                // Se encontrarmos um número menor, atualizamos quem é o menor índice
+                if (listaNumeros[j] < listaNumeros[menorIndice]) {
+                    menorIndice = j;
+                }
+            }
+
+            if (menorIndice !== i) {
+            let temp = listaNumeros[i];
+            listaNumeros[i] = listaNumeros[menorIndice];
+            listaNumeros[menorIndice] = temp;
+
             }
         }
     }

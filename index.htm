@@ -19,9 +19,20 @@
     <label for="slider-velocidade">Tempo de Espera (ms):</label>
     <input type="range" id="slider-velocidade" min="1" max="300" value="50">
 </div>
-
+<div>
+    <label for = "seletor-algoritmo">Algoritmo:</label>
+    <select id="seletor-algoritmo">
+        <option value="bubble">Bubble Sort</option>
+        <option value="selection">Selection Sort</option>
+        <!-- <option value="insertion">Insertion Sort</option>
+        <option value="quick">Quick Sort</option>
+        <option value="merge">Merge Sort</option>  -->  
+        </select>
+</div>
+<div>
     <button id="btn-gerar">Gerar Novo Array</button>
-    <button id="btn-ordenar">Ordenar (Bubble Sort)</button>
+    <button id="btn-ordenar">Ordenar</button> 
+</div>
 
     <canvas id="tela" width="800" height="400"></canvas>
 
