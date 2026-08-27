@@ -1,5 +1,6 @@
 const tela = document.getElementById("tela");
 const pincel = tela.getContext("2d");
+const botaoGerar = document.getElementById("btn-gerar");
 
 
 function desenharTela(array) {
@@ -21,7 +22,7 @@ function desenharTela(array) {
     }
 }
 
-function gerarArreyAleatorio(quantidade) {
+function gerarArrayAleatorio(quantidade) {
     
     let novaLista = [];
 
@@ -35,5 +36,15 @@ function gerarArreyAleatorio(quantidade) {
     return novaLista;
 }
 
-let listaNumeros = gerarArreyAleatorio(9000); // crio uma lista com n numeros aleatorios entre 10 e 360
+let listaNumeros = gerarArrayAleatorio(30); // crio uma lista com n numeros aleatorios entre 10 e 360
 desenharTela(listaNumeros); // desenha a tela com a lista de numeros aleatorios
+
+
+
+botaoGerar.addEventListener("click", function() {
+    // Atualizamos a nossa variável com uma nova lista sorteada
+    listaNumeros = gerarArrayAleatorio(30); 
+    
+    // Mandamos o pintor desenhar essa nova lista
+    desenharTela(listaNumeros);
+});
