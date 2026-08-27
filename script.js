@@ -1,6 +1,7 @@
 const tela = document.getElementById("tela");
 const pincel = tela.getContext("2d");
 const botaoGerar = document.getElementById("btn-gerar");
+const sliderQuantidade = document.getElementById("slider-quantidade");
 
 
 function desenharTela(array) {
@@ -40,14 +41,28 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-let listaNumeros = gerarArrayAleatorio(30); // crio uma lista com n numeros aleatorios entre 10 e 360
+sliderQuantidade.addEventListener("input", function() {
+    
+    // Pegamos o número atual onde a bolinha parou (ele vem como texto, 
+    // então usamos parseInt para transformar em número matemático)
+    let novaQuantidade = parseInt(sliderQuantidade.value);
+    listaNumeros = gerarArrayAleatorio(novaQuantidade);
+    desenharTela(listaNumeros);
+
+    // O SEU DESAFIO AQUI:
+    // O que você precisa fazer com essa "novaQuantidade" para que a 
+    // tela se atualize em tempo real enquanto você arrasta o slider?
+
+});
+
+let listaNumeros = gerarArrayAleatorio(parseInt(sliderQuantidade.value)); 
 desenharTela(listaNumeros); // desenha a tela com a lista de numeros aleatorios
 
 
 
 botaoGerar.addEventListener("click", function() {
     // Atualizamos a nossa variável com uma nova lista sorteada
-    listaNumeros = gerarArrayAleatorio(30); 
+    listaNumeros = gerarArrayAleatorio(listaNumeros.length); 
     
     // Mandamos o pintor desenhar essa nova lista
     desenharTela(listaNumeros);
