@@ -5,23 +5,35 @@ const sliderQuantidade = document.getElementById("slider-quantidade");
 const sliderVelocidade = document.getElementById("slider-velocidade");
 
 
-function desenharTela(array) {
+function desenharTela(array, indice1 = -1, indice2 = -1, indiceVerde = -1) {
 
-    pincel.clearRect(0, 0, tela.width, tela.height);// limpo a tela antes de desenhar
-
-    const espaco = 2; // espaço entre as barras
-    const larguraBarra = (tela.width / array.length) - espaco;// largura de cada barra muda dependendo da quantidade de numeros na lista
+    pincel.clearRect(0, 0, tela.width, tela.height);
+    const espaco = 2; 
+    const larguraBarra = (tela.width / array.length) - espaco;
     
-    pincel.fillStyle = "black";// cor das barras
-
+    // O for abre aqui
     for (let i = 0; i < array.length; i++) {
-    
+        
+        
+        if (i === indiceVerde){
+            pincel.fillStyle = "green";
+        } 
+        else if (i === indice1 || i === indice2 ) {
+            pincel.fillStyle = "red"; 
+        } 
+        else {
+            pincel.fillStyle = "black"; 
+        }
+
+        // Tudo isso fica DENTRO do for
         let altura = array[i];
         let posX = i * (larguraBarra + espaco);
         let posY = tela.height - altura;
 
-    pincel.fillRect(posX, posY, larguraBarra, altura);
-    }
+        pincel.fillRect(posX, posY, larguraBarra, altura);
+    } 
+    
+    
 }
 
 function gerarArrayAleatorio(quantidade) {
@@ -60,12 +72,10 @@ let listaNumeros = gerarArrayAleatorio(parseInt(sliderQuantidade.value));
 desenharTela(listaNumeros); // desenha a tela com a lista de numeros aleatorios
 
 
-
+let ordenando = false;
 botaoGerar.addEventListener("click", function() {
-    // Atualizamos a nossa variável com uma nova lista sorteada
+    if (ordenando) return;
     listaNumeros = gerarArrayAleatorio(listaNumeros.length); 
-    
-    // Mandamos o pintor desenhar essa nova lista
     desenharTela(listaNumeros);
 });
 
@@ -73,18 +83,31 @@ const botaoOrdenar = document.getElementById("btn-ordenar");
 
 
 botaoOrdenar.addEventListener("click", async function() {
+    if (ordenando) return;
+    ordenando = true;
     
     for (let i =0; i < listaNumeros.length; i++) {
         for (let j =0; j < listaNumeros.length - i - 1; j++) {
+
             await sleep(parseInt(sliderVelocidade.value)); 
             if (listaNumeros[j] > listaNumeros[j+1]){
                 let temp = listaNumeros[j];
                 listaNumeros[j] = listaNumeros[j+1];
                 listaNumeros[j+1] = temp;
 
-                desenharTela(listaNumeros);
+                desenharTela(listaNumeros, j, j+1, -1);
             }
+        }
     }
+
+    for (let w = 0; w < listaNumeros.length; w++) {
+        
+    desenharTela(listaNumeros, -1, -1, w);
+    await sleep(30); 
+    }
+
+    desenharTela(listaNumeros);
 }
+
     
-});
+);
