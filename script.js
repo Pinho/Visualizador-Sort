@@ -6,8 +6,9 @@ function desenharTela(array) {
 
     pincel.clearRect(0, 0, tela.width, tela.height);// limpo a tela antes de desenhar
 
-    const larguraBarra = 40;
-    const espaco = 10; // espaço entre as barras
+    const espaco = 2; // espaço entre as barras
+    const larguraBarra = (tela.width / array.length) - espaco;// largura de cada barra muda dependendo da quantidade de numeros na lista
+    
     pincel.fillStyle = "black";// cor das barras
 
     for (let i = 0; i < array.length; i++) {
@@ -34,5 +35,5 @@ function gerarArreyAleatorio(quantidade) {
     return novaLista;
 }
 
-let listaNumeros = gerarArreyAleatorio(15); // crio uma lista com 15 numeros aleatorios entre 10 e 360
+let listaNumeros = gerarArreyAleatorio(9000); // crio uma lista com n numeros aleatorios entre 10 e 360
 desenharTela(listaNumeros); // desenha a tela com a lista de numeros aleatorios
