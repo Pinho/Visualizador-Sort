@@ -2,6 +2,7 @@ const tela = document.getElementById("tela");
 const pincel = tela.getContext("2d");
 const botaoGerar = document.getElementById("btn-gerar");
 const sliderQuantidade = document.getElementById("slider-quantidade");
+const sliderVelocidade = document.getElementById("slider-velocidade");
 
 
 function desenharTela(array) {
@@ -75,7 +76,7 @@ botaoOrdenar.addEventListener("click", async function() {
     
     for (let i =0; i < listaNumeros.length; i++) {
         for (let j =0; j < listaNumeros.length - i - 1; j++) {
-            await sleep(50); 
+            await sleep(parseInt(sliderVelocidade.value)); 
             if (listaNumeros[j] > listaNumeros[j+1]){
                 let temp = listaNumeros[j];
                 listaNumeros[j] = listaNumeros[j+1];
