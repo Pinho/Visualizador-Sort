@@ -36,6 +36,10 @@ function gerarArrayAleatorio(quantidade) {
     return novaLista;
 }
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 let listaNumeros = gerarArrayAleatorio(30); // crio uma lista com n numeros aleatorios entre 10 e 360
 desenharTela(listaNumeros); // desenha a tela com a lista de numeros aleatorios
 
@@ -47,4 +51,24 @@ botaoGerar.addEventListener("click", function() {
     
     // Mandamos o pintor desenhar essa nova lista
     desenharTela(listaNumeros);
+});
+
+const botaoOrdenar = document.getElementById("btn-ordenar");
+
+
+botaoOrdenar.addEventListener("click", async function() {
+    
+    for (let i =0; i < listaNumeros.length; i++) {
+        for (let j =0; j < listaNumeros.length - i - 1; j++) {
+            await sleep(50); 
+            if (listaNumeros[j] > listaNumeros[j+1]){
+                let temp = listaNumeros[j];
+                listaNumeros[j] = listaNumeros[j+1];
+                listaNumeros[j+1] = temp;
+
+                desenharTela(listaNumeros);
+            }
+    }
+}
+    
 });
