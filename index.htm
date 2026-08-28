@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visualizador de Algoritmos</title>
-    
-    <!-- Esta é a linha que conecta o HTML ao seu arquivo style.css -->
+    <title>Visualizador de Algoritmos - Matrix Edition</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,12 +11,12 @@
     
     <div class="painel-controles">
         <div class="controle-grupo">
-            <label for="slider-quantidade">Quantidade de Barras:</label>
+            <label for="slider-quantidade">Barras: [<span id="valor-quantidade">30</span>]</label>
             <input type="range" id="slider-quantidade" min="5" max="150" value="30">
         </div>
         
         <div class="controle-grupo">
-            <label for="slider-velocidade">Tempo de Espera (ms):</label>
+            <label for="slider-velocidade">Espera: [<span id="valor-velocidade">50</span>ms]</label>
             <input type="range" id="slider-velocidade" min="1" max="300" value="50">
         </div>
         
@@ -34,12 +32,25 @@
         </div>
         
         <div class="botoes">
-            <button id="btn-gerar">Gerar Novo Array</button>
+            <button id="btn-gerar">Novo Array</button>
             <button id="btn-ordenar">Ordenar</button> 
         </div>
     </div>
 
     <canvas id="tela" width="800" height="400"></canvas>
+
+    <div class="painel-info">
+        <div class="estatisticas">
+            <h3>[ LOG DE SISTEMA ]</h3>
+            <p>> Comparações: <span id="contador-comparacoes" class="destaque">0</span></p>
+            <p>> Acessos ao Array: <span id="contador-acessos" class="destaque">0</span></p>
+        </div>
+        <div class="teoria">
+            <h3 id="teoria-titulo">[ Bubble Sort ]</h3>
+            <p>> Complexidade de Tempo: <span id="teoria-tempo" class="destaque-math">O(n²)</span></p>
+            <p>> Complexidade de Espaço: <span id="teoria-espaco" class="destaque-math">O(1)</span></p>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
