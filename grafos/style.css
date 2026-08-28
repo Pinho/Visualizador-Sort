@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+body {
+    background-color: #000000;
+    color: #00ff41;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding-top: 40px;
+}
+
+.painel-controles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    background-color: rgba(0, 20, 0, 0.8);
+    padding: 20px 30px;
+    border: 1px solid #00ff41;
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+    margin-bottom: 30px;
+    align-items: flex-end;
+    width: 800px;
+}
+
+.btn-voltar {
+    color: #00ff41;
+    text-decoration: none;
+    font-weight: bold;
+    border: 1px dashed #00ff41;
+    padding: 8px;
+    margin-right: 20px;
+}
+
+.btn-voltar:hover {
+    background-color: #00ff41;
+    color: black;
+}
+
+.controle-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #00ff41;
+}
+
+input[type="number"] {
+    padding: 8px;
+    background-color: #000000;
+    color: #00ff41;
+    border: 1px solid #00ff41;
+    font-weight: bold;
+    width: 100px;
+    outline: none;
+}
+
+.botoes {
+    display: flex;
+    gap: 10px;
+    margin-left: 20px;
+}
+
+button {
+    padding: 10px 15px;
+    border: 1px solid #00ff41;
+    background-color: #000000;
+    color: #00ff41;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+button:hover {
+    background-color: #00ff41;
+    color: #000000;
+}
+
+canvas {
+    background-color: #000000; 
+    border: 1px solid #00ff41;
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+}
