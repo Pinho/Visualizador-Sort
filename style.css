@@ -1,0 +1,97 @@
+/* Reseta as margens padrão do navegador */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #121212; /* Fundo escuro */
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding-top: 40px;
+}
+
+.painel-controles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    background-color: #1e1e1e;
+    padding: 20px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    margin-bottom: 30px;
+    align-items: flex-end;
+}
+
+.controle-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #b3b3b3;
+}
+
+select, input[type="range"] {
+    cursor: pointer;
+}
+
+select {
+    padding: 8px 12px;
+    background-color: #2c2c2c;
+    color: white;
+    border: 1px solid #444;
+    border-radius: 6px;
+    outline: none;
+}
+
+.botoes {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+#btn-gerar {
+    background-color: #444;
+    color: white;
+}
+
+#btn-gerar:hover {
+    background-color: #555;
+}
+
+#btn-ordenar {
+    background-color: #00d26a; /* Verde chamativo */
+    color: #000;
+}
+
+#btn-ordenar:hover {
+    background-color: #00e676;
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+canvas {
+    background-color: #f5f5f5; /* Fundo claro para contrastar as barras */
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}

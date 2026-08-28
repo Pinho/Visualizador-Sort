@@ -2,41 +2,45 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visualizador de Algoritmos</title>
+    
+    <!-- Esta é a linha que conecta o HTML ao seu arquivo style.css -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Carrega as ferramentas de som primeiro -->
     <script src="audio.js"></script>
     
-
-
-    <div>
-    <label for="slider-quantidade">Quantidade de Barras:</label>
-    <!-- min e max definem os limites, e value é onde a bolinha começa -->
-    <input type="range" id="slider-quantidade" min="5" max="150" value="30">
-</div>
-<div>
-    <label for="slider-velocidade">Tempo de Espera (ms):</label>
-    <input type="range" id="slider-velocidade" min="1" max="300" value="50">
-</div>
-<div>
-    <label for = "seletor-algoritmo">Algoritmo:</label>
-    <select id="seletor-algoritmo">
-        <option value="bubble">Bubble Sort</option>
-        <option value="selection">Selection Sort</option>
-        <option value="insertion">Insertion Sort</option>  
-        <option value="quick">Quick Sort</option> 
-        <option value="merge">Merge Sort</option>  
-        </select>
-</div>
-<div>
-    <button id="btn-gerar">Gerar Novo Array</button>
-    <button id="btn-ordenar">Ordenar</button> 
-</div>
+    <div class="painel-controles">
+        <div class="controle-grupo">
+            <label for="slider-quantidade">Quantidade de Barras:</label>
+            <input type="range" id="slider-quantidade" min="5" max="150" value="30">
+        </div>
+        
+        <div class="controle-grupo">
+            <label for="slider-velocidade">Tempo de Espera (ms):</label>
+            <input type="range" id="slider-velocidade" min="1" max="300" value="50">
+        </div>
+        
+        <div class="controle-grupo">
+            <label for="seletor-algoritmo">Algoritmo:</label>
+            <select id="seletor-algoritmo">
+                <option value="bubble">Bubble Sort</option>
+                <option value="selection">Selection Sort</option>
+                <option value="insertion">Insertion Sort</option>
+                <option value="quick">Quick Sort</option>
+                <option value="merge">Merge Sort</option> 
+            </select>
+        </div>
+        
+        <div class="botoes">
+            <button id="btn-gerar">Gerar Novo Array</button>
+            <button id="btn-ordenar">Ordenar</button> 
+        </div>
+    </div>
 
     <canvas id="tela" width="800" height="400"></canvas>
 
-    
     <script src="script.js"></script>
 </body>
 </html>
