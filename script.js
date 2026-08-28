@@ -30,13 +30,12 @@ async function partition(arr, inicio, fim) {
         tocarSom(arr[i]);
         await sleep(parseInt(sliderVelocidade.value));
         
-        
         if (arr[i] < valorPivo) {
             let tmp = arr[i];
             arr[i] = arr[indiceTroca];
             arr[indiceTroca] = tmp;
             
-            indiceTroca++; // Prepara a próxima casa
+            indiceTroca++; 
         }
     }
     let temp = arr[indiceTroca];
@@ -44,12 +43,72 @@ async function partition(arr, inicio, fim) {
     arr[fim] = temp;
 
     desenharTela(arr, indiceTroca, fim, -1);
-    return indiceTroca; // Retorna onde o pivô ficou para o quickSort continuar quebrando a lista
+    return indiceTroca; 
 }
 
+async function mergeSort(arr, inicio, fim) {
+    if (inicio >= fim) return; 
+    
+    let meio = Math.floor((inicio + fim) / 2);
+    
+    await mergeSort(arr, inicio, meio);
 
+    await mergeSort(arr, meio + 1, fim);
 
+    await merge(arr, inicio, meio, fim);
+}
 
+async function merge(arr, inicio, meio, fim) {
+
+    let n1 = meio - inicio + 1;
+    let n2 = fim - meio;
+    
+    let esquerda = new Array(n1);
+    let direita = new Array(n2);
+    
+    for (let i = 0; i < n1; i++) esquerda[i] = arr[inicio + i];
+    for (let j = 0; j < n2; j++) direita[j] = arr[meio + 1 + j];
+    
+  
+    let i = 0, j = 0;
+    let k = inicio; 
+    
+
+    while (i < n1 && j < n2) {
+        
+        // Pinta de vermelho os dois números que estão brigando pela vaga
+        desenharTela(arr, inicio + i, meio + 1 + j, -1);
+        tocarSom(arr[k]);
+        await sleep(parseInt(sliderVelocidade.value));
+        
+
+        if (esquerda[i] <= direita[j]) {
+            arr[k] = esquerda[i];
+            i++;
+        } else {
+            arr[k] = direita[j];
+            j++;
+        }
+        
+        k++; 
+    }
+    
+    while (i < n1) {
+        arr[k] = esquerda[i];
+        desenharTela(arr, k, k, -1);
+        await sleep(parseInt(sliderVelocidade.value));
+        i++;
+        k++;
+    }
+    
+    while (j < n2) {
+        arr[k] = direita[j];
+        desenharTela(arr, k, k, -1);
+        await sleep(parseInt(sliderVelocidade.value));
+        j++;
+        k++;
+    }
+}
 
 
 function desenharTela(array, indice1 = -1, indice2 = -1, indiceVerde = -1) {
@@ -212,7 +271,9 @@ botaoOrdenar.addEventListener("click", async function() {
         await quickSort(listaNumeros, 0, listaNumeros.length - 1);
     }
 
-
+    if (algoritmoEscolhido === "merge") {
+        await mergeSort(listaNumeros, 0, listaNumeros.length - 1);
+    }
 
     for (let w = 0; w < listaNumeros.length; w++) {
 
