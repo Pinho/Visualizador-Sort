@@ -6,6 +6,52 @@ const sliderVelocidade = document.getElementById("slider-velocidade");
 const seletorAlgoritmo = document.getElementById("seletor-algoritmo");
 
 
+
+async function quickSort(arr, inicio, fim) {
+    if (inicio >= fim) {
+        return; 
+    }
+    
+    
+    let indicePivo = await partition(arr, inicio, fim);
+    
+    await quickSort(arr, inicio, indicePivo - 1);
+    await quickSort(arr, indicePivo + 1, fim);
+}
+
+async function partition(arr, inicio, fim) {
+    
+    let valorPivo = arr[fim];
+    let indiceTroca = inicio;
+    
+    for (let i = inicio; i < fim; i++) {
+        
+        desenharTela(arr, i, fim, -1);
+        tocarSom(arr[i]);
+        await sleep(parseInt(sliderVelocidade.value));
+        
+        
+        if (arr[i] < valorPivo) {
+            let tmp = arr[i];
+            arr[i] = arr[indiceTroca];
+            arr[indiceTroca] = tmp;
+            
+            indiceTroca++; // Prepara a próxima casa
+        }
+    }
+    let temp = arr[indiceTroca];
+    arr[indiceTroca] = arr[fim];
+    arr[fim] = temp;
+
+    desenharTela(arr, indiceTroca, fim, -1);
+    return indiceTroca; // Retorna onde o pivô ficou para o quickSort continuar quebrando a lista
+}
+
+
+
+
+
+
 function desenharTela(array, indice1 = -1, indice2 = -1, indiceVerde = -1) {
 
     pincel.clearRect(0, 0, tela.width, tela.height);
@@ -159,6 +205,11 @@ botaoOrdenar.addEventListener("click", async function() {
             listaNumeros[j + 1] = chave;
             
         }
+    }
+
+    if (algoritmoEscolhido === "quick") {
+        // Passamos a lista, o índice inicial (0) e o índice final (tamanho - 1)
+        await quickSort(listaNumeros, 0, listaNumeros.length - 1);
     }
 
 
