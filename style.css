@@ -1,14 +1,14 @@
-/* Reseta as margens padrão do navegador */
+/* Reseta as margens padrão do navegador e adiciona fonte de Terminal */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 body {
-    background-color: #121212; /* Fundo escuro */
-    color: #ffffff;
+    background-color: #000000; /* Preto absoluto */
+    color: #00ff41; /* Verde clássico do Matrix */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,10 +20,11 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    background-color: #1e1e1e;
+    background-color: rgba(0, 20, 0, 0.8);
     padding: 20px 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    border: 1px solid #00ff41; /* Borda verde */
+    border-radius: 0; /* Matrix não tem cantos arredondados, é tudo reto */
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.3), inset 0 0 10px rgba(0, 255, 65, 0.1);
     margin-bottom: 30px;
     align-items: flex-end;
 }
@@ -36,8 +37,9 @@ body {
 
 label {
     font-size: 14px;
-    font-weight: 600;
-    color: #b3b3b3;
+    font-weight: bold;
+    color: #00ff41;
+    text-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
 }
 
 select, input[type="range"] {
@@ -46,11 +48,41 @@ select, input[type="range"] {
 
 select {
     padding: 8px 12px;
-    background-color: #2c2c2c;
-    color: white;
-    border: 1px solid #444;
-    border-radius: 6px;
+    background-color: #000000;
+    color: #00ff41;
+    border: 1px solid #00ff41;
+    border-radius: 0;
     outline: none;
+    font-weight: bold;
+}
+
+select option {
+    background-color: #000000;
+    color: #00ff41;
+}
+
+/* Customização dos Sliders para parecerem barras de terminal */
+input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    background: transparent;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 16px;
+    width: 10px;
+    background: #00ff41;
+    cursor: pointer;
+    margin-top: -6px;
+    box-shadow: 0 0 8px #00ff41;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 2px;
+    cursor: pointer;
+    background: #00ff41;
 }
 
 .botoes {
@@ -60,38 +92,34 @@ select {
 
 button {
     padding: 10px 18px;
-    border: none;
-    border-radius: 6px;
+    border: 1px solid #00ff41;
+    background-color: #000000;
+    color: #00ff41;
+    border-radius: 0;
     font-weight: bold;
+    text-transform: uppercase;
     cursor: pointer;
-    transition: background-color 0.2s, transform 0.1s;
+    transition: all 0.2s;
 }
 
-#btn-gerar {
-    background-color: #444;
-    color: white;
-}
-
-#btn-gerar:hover {
-    background-color: #555;
+button:hover {
+    background-color: #00ff41;
+    color: #000000;
+    box-shadow: 0 0 15px #00ff41;
 }
 
 #btn-ordenar {
-    background-color: #00d26a; /* Verde chamativo */
-    color: #000;
-}
-
-#btn-ordenar:hover {
-    background-color: #00e676;
-    transform: translateY(-2px);
+    border-width: 2px;
+    box-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
 }
 
 button:active {
-    transform: translateY(0);
+    transform: scale(0.95);
 }
 
+/* Canvas como um monitor antigo */
 canvas {
-    background-color: #f5f5f5; /* Fundo claro para contrastar as barras */
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    background-color: #000000; 
+    border: 1px solid #00ff41;
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
 }
