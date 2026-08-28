@@ -10,12 +10,24 @@
         <a href="../index.html" class="btn-voltar">< Voltar ao Hub</a>
         
         <div class="controle-grupo">
-            <label for="input-valor">Novo Nó (Valor):</label>
+            <label for="input-valor">Valor:</label>
             <input type="number" id="input-valor" value="50">
         </div>
         
         <div class="botoes">
-            <button id="btn-inserir">Inserir na BST</button>
+            <button id="btn-inserir">Inserir</button>
+            <button id="btn-buscar">Buscar</button>
+        </div>
+        
+        <div class="botoes">
+            <button id="btn-inorder">In-Order</button>
+            <button id="btn-preorder">Pre-Order</button>
+            <button id="btn-postorder">Post-Order</button>
+        </div>
+        
+        <!-- Onde o resultado da leitura vai aparecer -->
+        <div style="width: 100%; margin-top: 15px; color: #00ff41; font-weight: bold;">
+            > Leitura: [ <span id="resultado-travessia"></span> ]
         </div>
     </div>
 
